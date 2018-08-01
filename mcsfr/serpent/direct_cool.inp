@@ -1,0 +1,14 @@
+%----------------- Surfaces
+surf 1003 cyl 0.0 0.0 160.0 0.0 500.0		% core
+surf 1004 cyl 0.0 0.0 161.0 0.0 500.0		% Wall between core and blanket
+surf 1005 cyl 0.0 0.0 261.0 0.0 500.0		% blanket
+surf 1006 cyl 0.0 0.0 300.0 0.0 500.0		% Reflector
+
+% --------------- Cells
+cell 101 0 fuel		-1003		% core
+cell 102 0 hast		-1004 1003	% wall
+cell 103 0 blank	-1005 1004	% blanket
+cell 104 0 hast 	-1006 1005	% Reflector
+
+cell 900 0 outside	1006
+		

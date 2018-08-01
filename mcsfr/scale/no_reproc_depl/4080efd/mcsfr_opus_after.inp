@@ -1,0 +1,8 @@
+=shell
+cp /home/andrei2/Desktop/ornl/mcsfr/scale/no_reproc_depl/4080efd/mcsfr_no_move_4080d.f71 f71
+end
+=opus
+data="f71" 
+units=gram case=1    nrank=2000 libtyp=all
+time=days typarms=nucl 
+end

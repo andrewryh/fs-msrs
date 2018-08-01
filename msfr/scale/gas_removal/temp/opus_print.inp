@@ -1,0 +1,8 @@
+=shell
+cp /home/andrei2/Desktop/ornl/msfr/scale/gas_removal/msfr_unit_vol_gases_removal.f71 f71
+end
+=opus
+data="f71"
+units=gper nrank=2000 libtyp=all
+time=days typarms=nucl sort=no
+end

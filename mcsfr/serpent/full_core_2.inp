@@ -1,0 +1,22 @@
+%----------------- Surfaces
+surf 1003 sph 0.0 0.0 0.0 148.60	% core
+surf 1004 sph 0.0 0.0 0.0 151.0		% Wall between core and downstream
+surf 1005 sph 0.0 0.0 0.0 158.5         % Fuel salt downstream
+surf 1006 sph 0.0 0.0 0.0 160.5		% Wall between fuel salt downstream and blanket
+surf 1007 sph 0.0 0.0 0.0 220.0		% Fertile salt in blanket, upstream
+surf 1008 sph 0.0 0.0 0.0 222.0		% Wall between fertile salt streams
+surf 1009 sph 0.0 0.0 0.0 257.6		% Fertile salt in blanket, downstream		
+surf 1010 sph 0.0 0.0 0.0 262.0		% Reflector
+
+% --------------- Cells
+cell 101 0 fuel		-1003		% core center
+cell 102 0 hast		-1004 1003	% wall
+cell 103 0 fuel		-1005 1004	% core, downstream
+cell 104 0 hast		-1006 1005	% wall between core and blanket
+cell 105 0 blank	-1007 1006	% fertile salt, upstream
+cell 106 0 hast		-1008 1007	% Wall between fertile salt streams
+cell 107 0 blank	-1009 1008	% Fertile salt, downstream
+cell 108 0 hast		-1010 1009	% Reflector
+
+cell 900 0 outside	1010
+		

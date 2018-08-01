@@ -1,0 +1,33 @@
+%----------------- Surfaces
+surf 1003 sph 0.0 0.0 -10.0 140.0	% core
+surf 1004 sph 0.0 0.0 -10.0 144.0	% Wall between core and downstream
+surf 1005 sph 0.0 0.0 0.0 159.70	% Fuel salt downstream
+surf 1006 sph 0.0 0.0 0.0 163.70	% Wall between fuel salt downstream and blanket
+surf 1007 sph 0.0 0.0 0.0 218.0		% Fertile salt in blanket, upstream
+surf 1008 sph 0.0 0.0 0.0 222.0		% Wall between fertile salt streams
+surf 1009 sph 0.0 0.0 0.0 260.5		% Fertile salt in blanket, downstream		
+surf 1010 sph 0.0 0.0 0.0 275.5		% Reflector
+
+surf 1011 cyl 0.0 0.0 15.0 -275.0 -157.5  % Salt in Drain pipe 
+surf 1012 cyl 0.0 0.0 18.0 -275.0 -158.0  % Drain pipe wall
+
+surf 1099 pz		155.0		% Top of core sphere cut 
+surf 1098 pz		151.0		% inner surface of top cut
+
+% --------------- Cells
+cell 101 0 fuel		-1003 			% core center
+cell 102 0 hast		-1004 1003 		% wall
+cell 103 0 fuel		-1005 1004 -1098 1011	% core, downstream
+cell 104 0 hast		-1006 1005 -1099 1012	% wall between core and blanket
+cell 105 0 blank	-1007 1006 1012		% fertile salt, upstream
+cell 106 0 hast		-1008 1007 1012		% Wall between fertile salt streams
+cell 107 0 blank	-1009 1008 1012		% Fertile salt, downstream
+cell 108 0 hast		-1010 1009 1012		% Reflector
+
+cell 109 0 fuel -1011 
+cell 110 0 hast -1012 1011
+cell 1020 0 blank	1099 -1006
+cell 1021 0 hast	-1005 1098 -1099
+
+cell 900 0 outside	1010
+		

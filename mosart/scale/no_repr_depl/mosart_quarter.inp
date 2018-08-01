@@ -1,0 +1,65 @@
+'#TestGrep# "k-eff [=]" ${OUTPUTFILENAME}
+'#TestGrep# "Transport k[=]" ${OUTPUTFILENAME}
+'#TestGrep# -i "erro[r]" ${OUTPUTFILENAME} | ${GREP} -v "[W]arnings and [E]rrors"
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-newt sequence
+'  ** v7-252 group library
+'  ** centrm cross-section processing (default for t-newt calculations)
+'  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
+'  ** latticecell cross-section processing option
+=t-depl      parm=(2region,weight,addnux=4)
+MOSART unit cell model, depletion without any removals, fuel T=900K (same in SERPENT)
+v7-238
+read comp 
+' fuel salt
+  wtptfuel  1 2.669138 13 9019 63.239858 3006 5.1533920E-03 3007 12.015762 4009 5.9776188 93237 4.6732192E-01 94238 2.3245506E-01 94239 3.2923018 94240 1.5679081 94241 1.0007848 94242 5.8572195E-01 95241 4.0712394E-02 95243 1.7390673E-01 90232 11.400495 1.0 900 end
+' Structural material
+  graphite 2 den=2.55 1.0 933 end
+  wtptclad 3 8.671 4 28000 72.0 42000 16.0 24000 7.0 26000 5.0 1 873 end
+end comp
+read celldata
+  latticecell squarepitch pitch=79.0 1 fuelr=16.00 2 cladr=17.05 3 end
+end celldata
+read depletion
+    1 2 3
+    solver=cram
+end depletion
+read burndata
+    power=140.0 burn=510 nlib=17 end
+end burndata
+READ opus
+matl=1 2 3 end
+title =     'Masses in fuel salt'
+units=gper nrank=2000 libtyp=all
+time=days typarms=nucl sort=no
+END opus
+read model
+238 group solution
+read parm
+'dz=188.0
+drawit=no prtbroad=no cmfd=3 xycmfd=2 sn=12 converge=mix echo=yes inners=2 therms=5 epsilon=1e-3
+timed=no prtmxsec=no prtmxtab=no prthmmix=no inrcvrg=no therm=yes
+end parm
+read materials
+  mix=1  pn=1 com="Fuel salt" end
+  mix=2  pn=3 com="Graphite"    end
+  mix=3  pn=1 com="Hastelloy"       end
+end materials
+read geom
+  global unit 1
+    cylinder 10 16.00  chord +x=0 chord +y=0 sides=256
+    cylinder 20 17.05 chord +x=0 chord +y=0 sides=256
+    cuboid   30 39.5 0. 39.5 0.
+    media 2 1 10
+    media 3 1 20 -10
+    media 1 1 30 -20
+  boundary 30 32 32
+end geom 
+' Depletion
+read bounds
+all=refl
+end bounds
+end model
+end

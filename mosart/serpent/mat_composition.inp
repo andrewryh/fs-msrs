@@ -1,0 +1,28 @@
+% --- Fuel (LiF-BeF2-ThF4+TRUF3 69.75 + 27.0 + 2.0 + 1.25 mole %), Li-7 - 99.95wt% Ignatiev 2013, Cantor 1973 (Table 1A):
+mat fuel   -2.669138 vol 1.0 burn 1 rgb 253 231 37    % g/cm3 for mixture Ansh: -2.628896
+9019.09c   	-6.3239858E-01		% Mass fraction of F-19
+3006.09c   	-5.1533920E-05    	% Mass fraction of Li-6 
+3007.09c   	-1.2015762E-01      	% Mass fraction of Li-7
+4009.09c   	-5.9776188E-02      	% Mass fraction of Be-9
+93237.09c	-4.6732192E-03		% Np-237
+94238.09c	-2.3245506E-03		% Pu-238
+94239.09c	-3.2923018E-02		% Pu-239
+94240.09c	-1.5679081E-02		% Pu-240
+94241.09c	-1.0007848E-02		% Pu-241
+94242.09c	-5.8572195E-03		% Pu-242
+95241.09c	-4.0712394E-04		% Am-241
+95243.09c	-1.7390673E-03		% Am-243
+90232.09c  	-1.1400495E-01   	% Mass fraction of Th-232
+                                                           
+%--- Cladding (Hastelloy-Hanes)
+mat clad   -8.671 tmp 873 rgb 127 205 187  % g/cm3 for mixture
+28000.06c    -72.0      % Mass fraction of Ni
+42000.06c    -16.0      % Mass fraction of Mo
+24000.06c    -7.0       % Mass fraction of Cr
+26000.06c    -5.0       % Mass fraction of Fe
+
+% --- Moderator graphite:
+mat moder    -2.3 tmp 933 rgb 68 1 84 moder gr 6012 6012.09c    -1.0 % 1.867
+
+% --- Thermal scattering data for graphite:
+therm gr 933 grj3.18t grj3.20t

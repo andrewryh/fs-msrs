@@ -1,0 +1,80 @@
+'#TestGrep# "k-eff [=]" ${OUTPUTFILENAME}
+'#TestGrep# "Transport k[=]" ${OUTPUTFILENAME}
+'#TestGrep# -i "erro[r]" ${OUTPUTFILENAME} | ${GREP} -v "[W]arnings and [E]rrors"
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-newt sequence
+'  ** v7-252 group library
+'  ** centrm cross-section processing (default for t-newt calculations)
+'  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
+'  ** latticecell cross-section processing option
+=t-newt        parm=weight
+MSFR unit cell model
+v7-252
+read comp 
+' fuel salt
+  u-233  1 den=4.1249 0.683517405  973 end
+  th-232 1 den=4.1249 0.51529607   973 end
+  li-7   1 den=4.1249 0.06075193   973 end
+  li-6   1 den=4.1249 0.000026044  973 end
+  f-19   1 den=4.1249 0.35559766   973 end
+' fertile salt
+  th-232 2 den=4.1249 0.58352547   973 end
+  li-7   2 den=4.1249 0.6076978    973 end
+  li-6   2 den=4.1249 0.0000026051 973 end
+  f-19   2 den=4.1249 0.35570215   973 end
+' Structural material
+  ni     3 den=10     0.79432      973 end
+  w      3 den=10     0.09976      973 end
+  cr     3 den=10     0.08014      973 end
+  mo     3 den=10     0.00736      973 end
+  fe     3 den=10     0.00632      973 end
+  ti     3 den=10     0.00295      973 end
+  c      3 den=10     0.00294      973 end
+  mn     3 den=10     0.00257      973 end
+  si     3 den=10     0.00252      973 end
+  al     3 den=10     0.00052      973 end
+  b      3 den=10 1 973 5010 19.8 5011 80.2 end
+  p      3 den=10     0.00023      973 end
+  s      3 den=10     0.00004      973 end
+end comp
+read celldata
+  latticecell squarepitch pitch=81.2600 3 fuelr=20.0 1 cladr=25.0 2 end
+end celldata
+read model
+252 group solution
+'read parm
+'  dz=425.5
+'end parm
+read materials
+  mix=1  com="Fuel salt LiF-ThF4-233UF4" end
+  mix=2  com="Fertile salt LiF4-ThF4"    end
+  mix=3  com="Structural material"       end
+end materials
+read geom
+  global unit 1
+    cylinder 10 20.0 
+    cylinder 20 25.0
+    cuboid   30 4p40.63
+    media 1 1 10
+    media 2 1 20 -10
+    media 3 1 30 -20
+  boundary 30 6 6
+end geom
+read collapse
+  8r1 2r2 3 3r4 5 5r6 6r7 2r8 3r9 4r10 4r11 12 13 10r14 3r15 16 6r17 
+  3r18 18r19 2r20 6r21 22 3r23 24 7r25 26 16r27 2r28 11r29 30 31 14r32 
+  33 2r34 35 3r36 35r37 5r38 7r39 11r40 4r41 2r42 43 44 3r45 2r46 2r47 2r48 
+  2r49 2r50 51 52 2r53 54 3r55 10r56
+
+'  OLD 238G collapse to 49G
+'  7r1 2 3 2r4 5 6 7 8 8 8r9 14r10 6r11 10r12 13 7r14 11r15 12r16 30r17 16r18 2r19 
+'  6r20 3r21 6r22 14r23 3r24 5r25 4r26 5r27 5r28 5r29 10r30 5r31 32 33 34 2r35 
+'  36 37 38 2r39 2r40 3r41 2r42 43 44 45 46 47 3r48 9r49 
+end collapse
+read bounds
+all=periodic
+end bounds
+end model
+end

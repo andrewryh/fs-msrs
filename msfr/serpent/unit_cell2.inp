@@ -1,0 +1,10 @@
+surf 101 cyl 0.0 0.0 92.50			% Core (fuel salt)
+surf 102 cyl 0.0 0.0 94.50			% Ni-based alloy outer radius
+surf 103 cyl 0.0 0.0 111.80			% Fertile salt 
+surf 104 sqc 0.0 0.0 155.00			% Outer Ni-based reflector/thermal insulation
+
+cell 1001 0 fuel	-101			% Core
+cell 1002 0 hast	-102 101		% Struct material
+cell 1003 0 blank	-103 102		% Blanket
+cell 1004 0 hast	-104 103		% THermal insulation/reflector
+cell 1099 0 outside	104			% Outside world

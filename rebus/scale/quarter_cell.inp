@@ -1,0 +1,49 @@
+'#TestGrep# "k-eff [=]" ${OUTPUTFILENAME}
+'#TestGrep# "Transport k[=]" ${OUTPUTFILENAME}
+'#TestGrep# -i "erro[r]" ${OUTPUTFILENAME} | ${GREP} -v "[W]arnings and [E]rrors"
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-newt sequence
+'  ** v7-252 group library
+'  ** centrm cross-section processing (default for t-newt calculations)
+'  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
+'  ** latticecell cross-section processing option
+=t-newt      parm=(2region,weight)
+REBUS-3700 full core model
+v7-238
+read comp 
+' fuel salt
+  wtptfuel  1 3.6 16 11023 6.7519489 17035 26.7508866 17037 9.22617828 93237 0.50031934 94238 0.22201671 94239 5.03863264 94240 2.31084993 94241 0.94331041 94242 0.66500778 95241 0.53888562 1095242 0.00104233 95243 0.15426513 96244 0.04482027 96245 0.00416933 92235 0.3373032 92238 46.5103635 1.0 963 end
+' Structural material (Ti)
+  ti        2 1 963 end
+end comp
+
+read model
+238 group solution
+read parm
+dz=330.0
+drawit=yes prtbroad=yes cmfd=no xycmfd=2 sn=8 converge=mix echo=yes inners=2 epsilon=1e-3
+timed=yes prtmxsec=no prtmxtab=yes prthmmix=no
+end parm
+read materials
+  mix=1  pn=1 com="Fuel salt" end
+  mix=2  pn=1 com="Structural material"       end
+end materials
+read geom
+  global unit 1
+    cylinder 10 190.0 chord +x=0 chord +y=0 sides=128
+    cylinder 20 195.0 chord +x=0 chord +y=0 sides=128
+    cuboid   30 195.0 0. 195.0 0.0
+    media 1 1 10
+    media 2 1 20 -10
+    media 0 1 30 -20 
+  boundary 30 64 64
+end geom 
+' Depletion
+
+read bounds
+all=vac
+end bounds
+end model
+end

@@ -1,0 +1,56 @@
+'#TestTolerance# 0.0002
+'#TestGrep# "lambda" ${OUTPUTFILENAME}
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-xsdrn sequence
+'  ** v7-252 group library
+'  ** 2region cross-section processing
+'  ** latticecell cross-section processing option
+=t-xsdrn           parm=2region
+pin-cell model with MOX 
+v7-252 
+read comp
+' Fuel
+  u-234 1 0  2.5952E-7 900  end
+  pu-238 1 0 4.6610E-5 900  end
+  pu-241 1 0 1.7491E-4 900  end
+  pu-242 1 0 1.3201E-4 900  end
+  o-16  1 0  4.6586E-2 900  end
+  pu-240 1 0 4.8255E-4 900  end
+  pu-239 1 0 1.0156E-3 900  end
+  u-235 1 0  5.4287E-5 900  end
+  u-238 1 0  2.1387E-2 900  end
+' zirc  
+  zr-90 2 0 3.8657E-2 620 end
+  fe    2 0 1.3345E-4 620 end
+  cr    2 0 6.8254E-5 620 end
+' h2o
+  h-1  3 0 4.8414E-2 575  end
+  o-16 3 0 2.4213E-2 575  end
+  b-10 3 0 4.7896E-6 575  end
+  b-11 3 0 1.9424E-5 575  end
+end comp
+read cell
+  latticecell squarepitch pitch=1.3127 3 fueld=0.8200 1 cladd=0.9500 2 end
+end cell
+read model
+pin-cell model with MOX
+read parm
+  sn=16
+  epsglobal=1e-6
+end parm
+read materials
+  mix=1 com='fuel' end
+  mix=2 com='clad' end
+  mix=3 com='moderator' end
+end materials
+read geom
+  geom=cylinder
+  rightBC=white
+  zoneIDs 1 2 3 end zoneids
+  zoneDimensions 0.41 0.475 0.7406117 end zoneDimensions
+  zoneIntervals 3r10 end zoneIntervals
+end geom
+end model
+end

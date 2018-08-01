@@ -1,0 +1,25 @@
+%+++++ Material definitions ++++++%   Depleted uranium with tails 0.25% and Cl-37 enrichment
+
+% --- Fuel salt
+mat fuel     -3.2882 tmp 1008 vol 3.8e+7 burn 1	rgb 248 246 23
+11023.09c	-7.8554397		% Na (100% of natural composition Na-23)
+17037.09c	-37.892951		% Cl-37
+92235.09c	-0.11842796		% U-235
+92238.09c	-47.857249		% U-238
+94239.09c	-6.2759322		% Pu-239
+
+% --- Fertile salt
+mat blank    -3.2882 tmp 923 vol 7.5e+7 burn 1	rgb 246 211 171   % Outer blanket Temp 650C
+11023.09c	-7.8575209		% Na
+17037.09c	-37.902990		% Cl-37
+92235.09c	-0.13389018		% U-235
+92238.09c	-54.105599		% U-238
+
+% --- Hastelloy N
+mat hast     -8.671 tmp 923	rgb 127 205 187   % Structural material T assumed=blanket T
+28000.09c    -72.0      % Mass fraction of Ni
+42000.09c    -16.0      % Mass fraction of Mo
+24000.09c    -7.0       % Mass fraction of Cr
+26000.09c    -5.0       % Mass fraction of Fe
+
+

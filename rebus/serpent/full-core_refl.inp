@@ -1,0 +1,31 @@
+%------------------- REBUS-3700 full-core model ------------
+
+%surf 200 pz  0.0
+%surf 201 pz  188.0  
+surf 101 cyl 0.0 0.0 190.0 -170.0 170.0		% Core (fuel salt)   
+surf 102 cyl 0.0 0.0 195.0 -170.0 170.0		% Reactor Vessel outer surface
+surf 150 cyl 0.0 0.0 245.0 -170.0 170.0		% Reflector/thermal insulation (stainless steel)
+surf 151 cyl 0.0 0.0 375.0 -170.0 170.0		% Biological shield (Concrete, Serpentine) 
+
+surf 103 cyl 0.0 0.0 190.0 -170.0 -165.0	% Bottom of the reactor vessel wall
+surf 104 cyl 0.0 0.0 245.0 -210.0 -170.0	% Axial steel reflector (bottom, layer 1)
+surf 105 cyl 0.0 0.0 375.0 -210.0 -170.0	% Axial concrete shield (bottom, layer 1)
+
+surf 110 cyl 0.0 0.0 190.0 165.0 170.0		% Top of the reactor vessel wall
+surf 111 cyl 0.0 0.0 245.0 170.0 210.0		% Axial steel reflector (upper, layer 1)
+surf 112 cyl 0.0 0.0 375.0 170.0 210.0		% Axial concrete shield (upper, layer 1)
+
+cell 1001 0 fuel	-101 110 103		% Core
+cell 1002 0 tit		-102 101		% THermal insulation/reflector inner
+cell 1050 0 steel	-150 102		% THermal insulation/reflector outer
+cell 1051 0 concrete	-151 150		% Concrete
+
+
+cell 1003 0 tit		-103			% Bottom
+cell 1004 0 steel	-104
+cell 1005 0 concrete	-105 104
+cell 1006 0 steel	-111
+cell 1007 0 concrete	-112 111
+cell 1014 0 tit		-110			% Top
+cell 1099 0 outside	151 104 105 111 112	% Outside world
+

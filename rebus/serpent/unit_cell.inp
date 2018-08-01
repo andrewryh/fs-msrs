@@ -1,0 +1,13 @@
+%----------- REBUS-3700 unit cell model
+
+surf 101 cyl 0.0 0.0 98.25			% Core (fuel salt)    97.25
+surf 103 cyl 0.0 0.0 99.75			% wall between core and blanket        99
+%surf 104 cyl 0.0 0.0 89.00
+surf 105 sqc 0.0 0.0 101.00			% Void				100.0
+
+%cell 1001 0 fuel	200 -201 -101		% Core
+cell 1001 0 fuel	-101			% Core
+cell 1003 0 tit		-103 101		% Blanket
+%cell 1004 0 steel	-104 103
+cell 1005 0 steel	-105 103		% Wall
+cell 1099 0 outside	105			% Outside world

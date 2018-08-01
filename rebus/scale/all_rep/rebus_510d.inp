@@ -1,0 +1,87 @@
+'#TestGrep# "k-eff [=]" ${OUTPUTFILENAME}
+'#TestGrep# "Transport k[=]" ${OUTPUTFILENAME}
+'#TestGrep# -i "erro[r]" ${OUTPUTFILENAME} | ${GREP} -v "[W]arnings and [E]rrors"
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-newt sequence
+'  ** v7-252 group library
+'  ** centrm cross-section processing (default for t-newt calculations)
+'  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
+'  ** latticecell cross-section processing option
+=t-depl      parm=(2region,weight,addnux=4)
+REBUS unit cell model, depletion with all adds and rms, fuel T=900K
+v7-238  
+read comp 
+' fuel salt
+  wtptfuel  1 3.6 16 11023 6.75235974 17035 26.7525143 17037 9.22673966 93237 0.45906338 94238 0.20370938 94239 4.62315084 94240 2.12029901 94241 0.86552576 94242 0.61017175 95241 0.49444952 1095242 0.00095638 95243 0.14154454 96244 0.04112443 96245 0.00382553 92235 0.34347287 92238 47.3610929 1.0 900 end
+' Structural material
+  ti            2 1 963 end
+  carbonsteel   3 1 673 end
+' Waste mixture
+  xe-135    4 0 1.0e-20 973 end
+end comp
+read celldata
+  latticecell squarepitch pitch=250.0 3 fuelr=92.50 1 cladr=100.50 2 end
+end celldata
+read depletion
+    1 decayonly 4
+end depletion
+read burndata
+    power=69.1882 burn=510 nlib=17 end
+end burndata
+READ opus
+matl=1 end
+title =     'Masses in fuel salt'
+units=gper nrank=2000 libtyp=all
+time=days typarms=nucl sort=no
+END opus
+read timetable
+   flow
+      from 1
+      to 4
+      type continuous
+      units pers
+      nuclides Kr Xe Ar H N O  	Se Nb Mo Tc Ru Rh Pd Ag Sb Te Zr Cd In Sn 	Y La Ce Pr Nd Pm Sm Gd Eu Dy Ho Er Tb Ga Ge As end
+      constant 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 end
+      time 0.0 end
+      factor 1.0 end
+   end flow
+   flow
+      to 1
+      type continuous
+      units gpers
+      nuclides u-238 end
+      constant 3.632558145E-04 end
+      time 0.0 end
+      factor 1.0 end
+   end flow 	
+end timetable
+read model
+238 group solution
+read parm
+'dz=188.0
+drawit=no prtbroad=no cmfd=3 xycmfd=2 sn=8 converge=mix echo=yes inners=5 epsilon=1e-3
+timed=yes prtmxsec=no prtmxtab=no prthmmix=no inrcvrg=no
+end parm
+read materials
+  mix=1  pn=1 com="Fuel salt" end
+  mix=2  pn=1 com="Titanium"    end
+  mix=3  pn=1 com="Carbon Steel"       end
+end materials
+read geom
+  global unit 1
+    cylinder 10 98.25  chord +x=0 chord +y=0 sides=128
+    cylinder 20 99.75 chord +x=0 chord +y=0 sides=128
+    cuboid   30 101. 0. 101. 0.
+    media 1 1 10
+    media 2 1 20 -10
+    media 3 1 30 -20
+  boundary 30 32 32
+end geom 
+' Depletion
+read bounds
+all=refl
+end bounds
+end model
+end

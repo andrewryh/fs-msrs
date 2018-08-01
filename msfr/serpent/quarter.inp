@@ -1,0 +1,15 @@
+%surf 200 pz  0.0
+%surf 201 pz  188.0  
+
+surf 101 pad -62.50 -62.5  0.0 92.50  180.0 90.0	% Core (fuel salt)    87.67
+surf 103 pad -62.50 -62.50 0.0 100.50 180.0 90.0	% Fertile salt        93.37
+surf 104 sqc 62.5 62.5 62.50			% Outer Ni-based reflector/thermal insulation  95.00
+
+%cell 1001 0 fuel	200 -201 -101		% Core
+cell 1001 0 fuel	-101 			% Core
+cell 1003 0 blank	-103 101 		% Blanket
+%cell 1004 0 hast	-104 103 		% THermal insulation/reflector
+cell 1099 0 outside	103			% Outside world 104
+
+%cell 1098 0 outside     -200			% Outside upper
+%cell 1097 0 outside	201			% Outside lower

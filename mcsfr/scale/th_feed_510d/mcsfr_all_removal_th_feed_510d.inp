@@ -1,0 +1,111 @@
+'#TestGrep# "k-eff [=]" ${OUTPUTFILENAME}
+'#TestGrep# "Transport k[=]" ${OUTPUTFILENAME}
+'#TestGrep# -i "erro[r]" ${OUTPUTFILENAME} | ${GREP} -v "[W]arnings and [E]rrors"
+'#TestGrep# "SCALE is finishe[d]" ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3}"
+'#TestGrep# "is finishe[d]\." ${OUTPUTFILENAME} | ${AWK} "{print $1,$2,$3,$4,$5,$6,$7}"
+' THIS SAMPLE PROBLEM TEST THE FOLLOWING: 
+'  ** t-newt sequence
+'  ** v7-252 group library
+'  ** centrm cross-section processing (default for t-newt calculations)
+'  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
+'  ** latticecell cross-section processing option
+=t-depl      parm=(2region,weight,addnux=4)
+MCSFR (UK, 2 fluid, chloride, U/PU) unit cell model depletion, core and blanket reprocessing, 510EFPD
+v7-238
+read comp 
+' fuel salt
+  wtptfuel  1 3.2882 5 92235 0.11865598 92238 47.949392 94239 6.183383 11023 7.8554704 17037 37.893099 1.0 1008 end
+' fertile salt
+  wtptblank 2 3.2882 4 92235 0.13389018 92238 54.105599 11023 7.8575209 17037 37.90299 1.0 923 end
+' Structural material
+  wtpthast  3 8.671 4 28000 72.0 42000 16.0 24000 7.0 26000 5.0 1.0 923 end
+' Waste mixture
+  xe-135    4 0 1.0e-20 1008 end
+' Excess of Pu storage
+  pu	    5 0 1.0e-20 923 end
+end comp
+read celldata
+  latticecell squarepitch pitch=236.0 3 fuelr=98.50 1 cladr=118.0 2 end
+end celldata
+read depletion
+    1 2 decayonly 4 5
+end depletion
+read burndata
+    power=30.7062436 burn=510 nlib=17 end
+end burndata
+READ opus
+matl=1 2 3 end
+title =     'Masses in fuel salt and blanket'
+units=gper nrank=2000 libtyp=all
+time=days typarms=nucl sort=no
+END opus
+read timetable
+   flow
+      from 1
+      to 4
+      type continuous
+      units pers
+      nuclides Kr Xe Ar H N O  	Se Nb Mo Tc Ru Rh Pd Ag Sb Te Zr Cd In Sn 	Y La Ce Pr Nd Pm Sm Gd Eu Dy Ho Er Tb Ga Ge As end
+      constant 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.3012E-01 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 3.8208E-05 end
+      time 0.0 end
+      factor 1.0 end
+   end flow
+   flow
+      to 1
+      type continuous
+      units gpers
+      nuclides u-238 end
+      constant 5.088827623E-04 end
+      time 0.0 end
+      factor 1.0 end
+   end flow 	
+   flow
+      from 2
+      to 5
+      type continuous
+      units pers
+      nuclides Pu end
+      constant 3.82079E-06 end
+      time 0.0 end
+      factor 1.0 end
+   end flow
+   flow 
+      to 2
+      type continuous
+      units gpers
+      nuclides u-238 end
+      constant 4.1991E-04 end
+      time   0.0 end
+      factor 1.0 end
+   end flow
+end timetable
+read model
+238 group solution
+read parm
+'dz=188.0
+drawit=yes prtbroad=yes cmfd=3 xycmfd=2 sn=12 converge=mix echo=yes inners=2 epsilon=1e-3
+timed=yes prtmxsec=no prtmxtab=yes prthmmix=no
+end parm
+read materials
+  mix=1  pn=1 com="Fuel salt" end
+  mix=2  pn=1 com="Fertile salt"    end
+  mix=3  pn=1 com="Structural material"       end
+end materials
+read geom
+  global unit 1
+    cylinder 10 98.50  chord +x=0 chord +y=0 sides=128
+    cylinder 20 118.00 chord +x=0 chord +y=0 sides=128
+    cuboid   30 118. 0. 118. 0.
+    media 1 1 10
+    media 2 1 20 -10
+    media 3 1 30 -20
+  boundary 30 32 32
+end geom 
+' Depletion
+
+
+read bounds
+all=mirror
+end bounds
+end model
+end

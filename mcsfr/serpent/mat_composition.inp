@@ -1,0 +1,25 @@
+%+++++ Material definitions ++++++%
+
+% --- Fuel salt
+mat fuel     -3.2882 tmp 1008	rgb 248 246 23
+11023.09c	-7.8564			% Na (100% of natural composition Na-23)
+17037.09c	-37.897585		% Cl-37
+92235.09c	-0.35663258		% U-235
+92238.09c	-49.804762		% U-238
+94239.09c	-4.0846202		% Pu-239
+
+% --- Fertile salt
+mat blank    -3.2882 tmp 1008	rgb 246 211 171
+11023.09c	-7.8132651		% Na
+17037.09c	-37.68951		% Cl-37
+92235.09c	-0.38343189		% U-235
+92238.09c	-53.547363		% U-238
+
+% --- Hastelloy N
+mat hast     -8.671 tmp 1008	rgb 127 205 187
+28000.09c    -72.0      % Mass fraction of Ni
+42000.09c    -16.0      % Mass fraction of Mo
+24000.09c    -7.0       % Mass fraction of Cr
+26000.09c    -5.0       % Mass fraction of Fe
+
+

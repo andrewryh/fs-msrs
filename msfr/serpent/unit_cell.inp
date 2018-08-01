@@ -1,0 +1,8 @@
+surf 101 cyl 0.0 0.0 92.82			% Core (fuel salt)
+surf 102 cyl 0.0 0.0 94.00			% Ni-based alloy outer radius
+surf 103 sqc 0.0 0.0 111.469			% Fertile salt 
+
+cell 1001 0 fuel	-101			% Core
+cell 1002 0 hast	-102 101		% Struct material
+cell 1003 0 blank	-103 102		% Blanket
+cell 1099 0 outside	103			% Outside world
