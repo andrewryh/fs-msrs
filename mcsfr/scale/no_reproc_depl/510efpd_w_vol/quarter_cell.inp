@@ -41,7 +41,7 @@ read model
 238 group solution
 read parm
 'dz=188.0
-drawit=yes prtbroad=yes cmfd=3 xycmfd=2 sn=12 converge=mix echo=yes inners=2 epsilon=1e-3
+drawit=yes prtbroad=yes cmfd=3 xycmfd=2 sn=8 converge=mix echo=yes inners=2 epsilon=1e-3
 timed=yes prtmxsec=no prtmxtab=yes prthmmix=no
 end parm
 read materials
@@ -60,10 +60,8 @@ read geom
   boundary 30 16 16
 end geom 
 ' Depletion
-
-
 read bounds
-all=mirror
+all=refl
 end bounds
 end model
 end

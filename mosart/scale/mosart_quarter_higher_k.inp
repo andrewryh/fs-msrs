@@ -10,11 +10,11 @@
 '  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
 '  ** latticecell cross-section processing option
 =t-newt      parm=(2region,weight)
-MOSART unit cell model, change TRU 1.25 --> 1.3
+MOSART unit cell model, change TRU 1.25 --> 1.3 --> 1.28
 v7-238
 read comp 
 ' fuel salt
-  wtptfuel  1 2.669138 13 9019 6.3076800E+01 3006 5.1326323E-03 3007 1.1967357E+01 4009 5.9578091E+00 93237 4.8440416E-01 94238 2.4095210E-01 94239 3.4126468E+00 94240 1.6252206E+00 94241 1.0373669E+00 94242 6.0713212E-01 95241 4.2200573E-02 95243 1.8026363E-01 90232 1.1362714E+01 1.0 933 end
+  wtptfuel  1 2.669138 13 9019 6.3141894E+01 3006 5.1409198E-03 3007 1.1986680E+01 4009 5.9657172E+00 93237 4.7758487E-01 94238 2.3756006E-01 94239 3.3646047E+00 94240 1.6023413E+00 94241 1.0227632E+00 94242 5.9858511E-01 95241 4.1606487E-02 95243 1.7772593E-01 90232 1.1377797E+01 1.0 933 end
 ' Structural material
   graphite 2 den=2.55 1.0 933 end
   wtptclad 3 8.671 4 28000 72.0 42000 16.0 24000 7.0 26000 5.0 1 873 end

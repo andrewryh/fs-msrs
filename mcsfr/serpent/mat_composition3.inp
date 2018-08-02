@@ -1,4 +1,4 @@
-%+++++ Material definitions ++++++%   Depleted uranium with tails 0.25% and Cl-37 enrichment
+%+++++ Material definitions ++++++%   Depleted uranium with tails 0.25% and Cl-37 enrichment, PuCl3 - 4.542 mole%
 
 % --- Fuel salt
 mat fuel     -3.2882 tmp 1008	rgb 248 246 23 burn 1
