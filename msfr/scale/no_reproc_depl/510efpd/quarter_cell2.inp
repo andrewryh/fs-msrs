@@ -10,11 +10,11 @@
 '  ** parm=weight option for the t-newt sequence, which uses the NEWT collapse block to specify a 252 -> 56 group collapse.
 '  ** latticecell cross-section processing option
 =t-depl      parm=(2region,weight,addnux=4)
-MSFR unit cell model depletion 510EFPD
+MSFR unit cell model depletion 510EFPD 2.675 U
 v7-238  
 read comp 
-' fuel salt
-  wtptfuel  1 4.1249 5 92233 6.83517405 90232 51.529607 3007 6.075193 3006 0.00026044 9019 35.559766 1.0 973 end
+' fuel salt 2.65 mole UF
+  wtptfuel  1 4.1249 5 92233 6.96532887 90232 51.399685 3007 6.075159 3006 0.00026044 9019 35.559567 1.0 973 end
 ' fertile salt
   wtptblank 2 4.1249 4 90232 58.352547 3007 6.076978 3006 0.00026051 9019 35.570215 1.0 973 end
 ' Structural material
