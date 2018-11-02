@@ -17,10 +17,9 @@ set bc 3		% Periodic BC
 
 % +++ Run parameters +++ %
 % ---- Libraries
-set acelib "sss_endfb7u.xsdata"
-set declib "sss_endfb7.dec"
-set nfylib "sss_endfb7.nfy"
-
+set acelib "/home/andrei2/serpent/xsdata/endfb7/sss_endfb7.xsdata" %this for BW
+set declib "/home/andrei2/serpent/xsdata/endfb7/sss_endfb7.dec"       % for BW
+set nfylib "/home/andrei2/serpent/xsdata/endfb7/sss_endfb7.nfy"       % for BW
 % --- Neutron population
 %set pop 10000 100 20
 set pop 15000 150 50
@@ -42,6 +41,6 @@ dep
 daytot 30
 %30 60 90 %6 9
 
-set rfw 1 restart_biniary_file
+%set rfw 1 restart_biniary_file
 set printm 1 0.0
-set inventory all
+%set inventory all
