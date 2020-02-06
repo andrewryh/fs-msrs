@@ -1,7 +1,7 @@
 set title "REBUS-3700 Full core model, 15.6at% TRU in HEaay MEtal"
 
-include "../mat_composition2.inp"
-include "../full-core.inp"
+include "./mat_composition2.inp"
+include "./full-core.inp"
 
 % ----- Boundary conditions
 set bc 1		% Black BC

@@ -1,0 +1,15 @@
+%------------------- REBUS-3700 full-core model ------------
+
+%surf 200 pz  0.0
+%surf 201 pz  188.0  
+surf 101 cyl 0.0 0.0 190.0 -165.0 165.0		% Core (fuel salt)   
+surf 102 cyl 0.0 0.0 195.0 -165.0 165.0		% Reactor Vessel outer surface
+surf 103 cyl 0.0 0.0 195.0 -170.0 -165.0	% Bottom of the reactor vessel
+surf 104 cyl 0.0 0.0 195.0 165.0 170.0		% Top of the reactor vessel
+
+cell 1001 0 fuel	-101			% Core
+cell 1002 0 tit		-102 101		% THermal insulation/reflector
+cell 1003 0 tit		-103			% Bottom
+cell 1004 0 tit		-104			% Top
+cell 1099 0 outside	102 103 104		% Outside world
+

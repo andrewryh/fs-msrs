@@ -9,21 +9,24 @@ set bc 1		% Periodic BC
 
 % +++ Run parameters +++ %
 % ---- Libraries
-set acelib "sss_endfb7u.xsdata"
-set declib "sss_endfb7.dec"
-set nfylib "sss_endfb7.nfy"
+set acelib "sss_endfb7.xsdata"
+set declib "sss_jeff33.dec"
+set nfylib "sss_jeff33.nfy"
+set sfylib "sss_jeff33.sfy"
 
 % --- Neutron population
 %set pop 10000 100 20
-set pop 1000 70 20
+set pop 120000 350 50
 
 % --- Depletion parameters
 % --- Options for burnup calculation:
 set bumode  2  % CRAM method
 set pcc     0  % Predictor-corrector calculation on
 %set xscalc  2  % Cross sections from spectrum
-set bunorm 2
-set opti 3
+%set bunorm 2
+%set opti 3
+set egrid 5E-5 1E-9 15.0
+set fpcut 1E-6
 
 % --- Irradiation cycle:
 %set power 6E+9		% 6 GWth
@@ -32,16 +35,15 @@ set powdens 30.7062436E-3
 
 dep
 daystep
-30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30
-30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30
-30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30
-30
+60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 60 % 1080 days
 
 set inventory all
 %set printm 1 1E-24
 
+set rfw  1  restart_file
+
 % --- Geometry plots
-%plot 3 1000 1000 50.0 
+%plot 3 1000 1000 50.0
 %plot 3 1000 1000 112.0
 %plot 3 1000 1000 212.75
 %plot 3 1000 1000 323.0
@@ -53,7 +55,7 @@ set inventory all
 
 %plot 3 1000 1000 375.0 -190.0 190.0 -190.0 190.0
 
-%plot 1 1000 1000 
+%plot 1 1000 1000
 
 %mesh 3 1000 1000
 
@@ -64,7 +66,7 @@ set inventory all
 ene tot 4 scale238
 ene 3 1 1E-9 20.00    % One total single bin
 
-ene tot 1 1.000e-11 
+ene tot 1 1.000e-11
  1.000e-10 5.000e-10 7.500e-10 1.000e-09 1.200e-09 1.500e-09 2.000e-09
  2.500e-09 3.000e-09 4.000e-09 5.000e-09 7.500e-09 1.000e-08 2.530e-08
  3.000e-08 4.000e-08 5.000e-08 6.000e-08 7.000e-08 8.000e-08 9.000e-08

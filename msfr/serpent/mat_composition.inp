@@ -1,7 +1,7 @@
 %+++++ Material definitions ++++++%
 
 % --- Fuel salt
-mat fuel     -4.1249 tmp 973 rgb 248 246 23
+mat fuel     -4.1249 tmp 973 rgb 248 246 23 burn 1 vol 18.0E+6
 92233.09c	-6.83517405		% U-233
 90232.09c	-51.529607		% Th-232
 3007.09c	-6.075193		% Li-7
@@ -9,7 +9,7 @@ mat fuel     -4.1249 tmp 973 rgb 248 246 23
 9019.09c	-35.559766		% F-19
 
 % --- Fertile salt
-mat blank    -4.1249 tmp 973 rgb 246 211 171
+mat blank    -4.1249 tmp 973 rgb 246 211 171 burn 1 vol 7.3E+6
 %92233.09c	-0.0			% U-233
 90232.09c	-58.352547		% Th-232
 3007.09c	-6.076978		% Li-7

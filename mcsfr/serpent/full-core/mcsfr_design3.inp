@@ -1,7 +1,7 @@
 set title "MCSFR (UK Report)"
 
-include "../mat_composition3.inp"
-include "../full_core_measured.inp"
+include "./mat_composition3.inp"
+include "./full_core_measured.inp"
 %include "../direct_cool.inp"
 
 % ----- Boundary conditions
@@ -9,11 +9,11 @@ set bc 1		% Black BC
 
 % +++ Run parameters +++ %
 % ---- Libraries
-set acelib "sss_endfb7u.xsdata"
+set acelib "sss_endfb7.xsdata"
 
 % --- Neutron population
 %set pop 10000 100 20
-set pop 80000 200 50
+set pop 160000 200 50
 
 % --- Depletion parameters
 % --- Options for burnup calculation:
@@ -33,7 +33,7 @@ set pop 80000 200 50
 %set printm 1 1E-24
 
 % --- Geometry plots
-plot 3 1000 1000 0.0 
+plot 3 1000 1000 0.0
 %plot 3 1000 1000 112.0
 %plot 3 1000 1000 212.75
 %plot 3 1000 1000 323.0
@@ -45,7 +45,7 @@ plot 3 1000 1000 0.0
 
 %plot 3 1000 1000 375.0 -190.0 190.0 -190.0 190.0
 
-plot 1 1000 1000 
+plot 1 1000 1000
 
 mesh 3 1000 1000
 
@@ -99,4 +99,3 @@ dz 100.0	325.5 1
 det flux_fuel dm fuel
 %--- Total flux in fertile salt
 det flux_fertile dm blank
-

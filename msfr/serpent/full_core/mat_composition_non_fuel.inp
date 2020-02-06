@@ -1,0 +1,35 @@
+%+++++ Material definitions ++++++%
+
+
+% --- Fertile salt
+mat blank    -4.1249 tmp 973 rgb 246 211 171 burn 1 vol 7.3E+6
+%92233.09c	-0.0			% U-233
+90232.09c	-58.352547		% Th-232
+3007.09c	-6.076978		% Li-7
+3006.09c	-0.00026051		% Li-6
+9019.09c	-35.570215		% F-19
+
+% --- Main structural material (Ni-based Hastelloy)
+mat hast     -10 tmp 973 rgb 129 132 187
+%528000.09c    -79.432		% Natural Ni
+%74000.09c    -9.976		% Natural W
+%24000.09c    -8.014		% Natural Cr
+%542000.09c    -0.736		% Natural Mo
+%26000.09c    -0.632		% Natural Fe
+%22000.09c    -0.295		% Natural Ti
+%6000.09c     -0.294		% Natural C
+25055.09c    -0.257		% Mn-55
+%14000.09c    -0.252		% Natural Si
+13027.09c    -0.052		% Al-27
+5010.09c     -0.006534		% B-10
+5011.09c     -0.026466		% B-11
+15031.09c    -0.023		% P-31
+%16000.09c    -0.004		% Natural S
+
+% --- B4C absorber
+mat abs      -2.52016 tmp 973 rgb 247 130 16
+5010.09c	-14.35110139			% B-10
+5011.09c	-63.91353615			% B-11
+%6000.09c	-21.73536246			% Natural C
+
+

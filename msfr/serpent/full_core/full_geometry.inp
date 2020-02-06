@@ -1,0 +1,47 @@
+%++++ Geometry definitions ++++%
+% --- Surfaces
+surf 1001 pz 0.0		% Lower Reflector, outer surface
+surf 1002 pz 100.0 		% Lower Reflector, inner surface
+surf 1003 pz 325.5		% Upper Reflector, inner surface
+surf 1004 pz 425.5		% Upper Reflector, outer surface
+
+surf 2001 cyl 0.0 0.0 112.75 118.75 306.75		% Blanket outer surface, interface between fertile salt and fuel salt
+surf 2002 cyl 0.0 0.0 162.75 118.75 306.75		% Blanket outer surface, interface between fertile salt and absorber
+surf 2003 cyl 0.0 0.0 114.75 120.75 304.75		% Blanket inner surface, fuel
+surf 2004 cyl 0.0 0.0 160.75 120.75 304.75		% Blanket inner surface, absorber
+surf 2005 pz 118.75					% Blanket/absorber lower surface
+surf 2006 pz 306.75					% Blanket/absorber upper surface
+surf 2007 pz 120.75					% Blanket lower inner surface
+surf 2008 pz 304.75					% Blanket upper inner surface
+
+surf 3001 cyl 0.0 0.0 226.45 0.0 425.5			% Inner thermal insulation boundary
+surf 3002 cyl 0.0 0.0 182.75 118.75 306.75		% Outer shielding/absorber boundary
+surf 3003 cyl 0.0 0.0 206.45 0.0 425.5			% Outer fuel salt boundary (interface with pumps region)
+surf 3004 cyl 0.0 0.0 226.45 118.75 306.75		% Inner thermal insulation boundary on the level of the core
+
+% --- Cells
+
+cell 101 0 hast 1001 -1002 -3001			% Lower Reflector
+cell 102 0 hast 1003 -1004 -3001			% Upper Reflector
+
+cell 201 0 fuel  2005 -2006 -2001			% Middle core region
+cell 202 0 fuel  1002 -2005 -3003			% Lower core region
+cell 203 0 fuel  2006 -1003 -3003			% Upper core region
+cell 204 0 fuel  2005 -2006 -3003 3002			% Fuel annulus around shielding/absorber
+
+cell 301 0 blank 2007 -2008 2003 -2004			% Blanket
+cell 401 0 hast 2001 -2003 2007 -2008			% Blanket inner wall
+cell 402 0 hast 2004 -2002 2007 -2008			% Blanket outer wall
+cell 403 0 hast 2005 -2007 2001 -2002			% Blanket bottom wall
+cell 404 0 hast 2008 -2006 2001 -2002			% Blanket top wall
+
+cell 501 0 abs 2005 -2006 2002 -3002			% Absorbing shielding
+
+cell 551 0 hast 2005 -2006 -3001 3003			% Outer insulation around the core
+cell 552 0 hast 1002 -2005 -3001 3003			% Outer insulation around the core, lower part cylinder
+cell 553 0 hast 2006 -1003 -3001 3003  			% Outer insulation around the core, upper part cylinder
+
+cell 601 0 outside 3001 1001 -1004			% Outside cylinder
+cell 602 0 outside -1001				% Outside upper
+cell 603 0 outside 1004					% Outside lower
+

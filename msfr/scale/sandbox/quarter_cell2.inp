@@ -44,7 +44,7 @@ read geom
     media 1 1 10
     media 2 1 20 -10
     media 3 1 30 -20
-  boundary 30 32 32
+  boundary 30 16 16
 end geom 
 ' Depletion
 read bounds

@@ -1,7 +1,7 @@
 set title "MSFR benchmark (EVOL Final report)"
 
-include "../mat_composition.inp"
-include "../full_geometry.inp"
+include "./mat_composition.inp"
+include "./full_geometry.inp"
 
 % ----- Boundary conditions
 set bc 1		% Black BC
